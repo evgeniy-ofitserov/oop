@@ -3,20 +3,37 @@
 // Подключаемся к БД РБ
 
 require "db.php";
-//Получаем все данные из таблицы  courses
 
-$courses = R::find('course');
+
+// Обновляем данные в БД
+
+// Получение одного курса
+
+$courses = R::load('course', 32);
 
 // print_r($courses);
 
-foreach ($courses as $course) {
-    // print_r($courses);
-    echo "ID: ".$course->id."<br>";
-    echo "Название: ".$course->title."<br>";
-    echo "Кол-во уроков: ".$course->tuts."<br>";
-    echo "Уровень: ".$course->level."<br>";
-    echo "<hr>";
-}
+// echo "ID" . $courses->id . "<br>";
+// echo "Название" . $courses->title . "<br>";
+
+
+echo "</hr>";
+
+// Обновляем данные
+
+$courses->title = "Курс по пикапу";
+$courses->tuts = 30;
+$courses->price = 1025;
+$courses-> = 1025;
+
+
+// Сохраняем данные
+
+R::store($courses);
+
+
+// БД Обновлена
+
 
 
 ?>
