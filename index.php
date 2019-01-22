@@ -3,49 +3,20 @@
 // Подключаемся к БД РБ
 
 require "db.php";
-// Создание новых записей 
+//Получаем все данные из таблицы  courses
 
-$course = R::dispense('course');
+$courses = R::find('course');
 
-// Значение 
+// print_r($courses);
 
-$course->title = "Курс по реакт";
-
-
-// Сохраняем в БД
-
-R::store($course);
-
-
-// Создаем новый БИН. новую запись в нашу БД
-
-$course->tuts = 10;
-$course->price = 10000;
-
-$course->homeworks = 8;
-$course->homeworks = 8;
-$course->level = 'Для новичков';
-
-R::store($course);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+foreach ($courses as $course) {
+    // print_r($courses);
+    echo "ID: ".$course->id."<br>";
+    echo "Название: ".$course->title."<br>";
+    echo "Кол-во уроков: ".$course->tuts."<br>";
+    echo "Уровень: ".$course->level."<br>";
+    echo "<hr>";
+}
 
 
 ?>

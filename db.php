@@ -6,11 +6,11 @@ require "libs/rb-mysql.php";
 $res = R::setup( 'mysql:host=localhost;dbname=school',
 'root', '' );
 
-if ($res) {
-    echo "OK";
-}else {
-    echo "NO!";
-}
+// if ($res) {
+//     echo "OK";
+// }else {
+//     echo "NO!";
+// }
 
 
 ?>
