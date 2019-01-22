@@ -3,38 +3,35 @@
 // тип БД и подкл. 'mysql:host=localhost; dbname=wd04-filmoteka-ofitserov
 // Создаем объект
 
+// Обновление данных
+
  $db = new PDO('mysql:host=localhost;dbname=mini-site','root', '');
 
  // Готовим запрос 
 
- $sql = "INSERT INTO users (name, email, password) VALUES (:name, :email, :password)";
+//  $sql = "UPDATE users SET name = :name WHERE id = :id";
 
- // Подготавл. запрос
- $stmt = $db->prepare($sql);
 
-$username = "Flash";
-$useremail = "flash@gmail.com";
-$userpass = "7777";
+// обновить несколько строчек в бд
+$sql = "UPDATE users SET name = :name, email = :email WHERE id = :id";
 
-// Обрабатываем запрос 
+
+$stmt = $db->prepare($sql);
+
+$username = "New Flash";
+
+$useremail = "plaha@ya.ru";
+
+
+$id = '11';
 
 $stmt->bindValue(':name', $username);
 $stmt->bindValue(':email', $useremail);
-$stmt->bindValue(':password', $userpass);
 
-
-// Выполняем запрос
-
+$stmt->bindValue(':id', $id);
 $stmt->execute();
 
-echo "<p>Было затронуто строк: ". $stmt->rowCount()."</p><br>";
-
-echo "<p>ID вставленной записи: ". $db->lastInsertID()."</p>";
-
-
-
-
-
+echo "Было затронуто строк: ". $stmt->rowCount()." ";
 
 
 
