@@ -1,214 +1,102 @@
 <?php 
+// Подключение через PDO
 
-// // Задача описать персону ( без ООП )
+// тип БД и подкл. 'mysql:host=localhost; dbname=wd04-filmoteka-ofitserov
 
+$db = new PDO('mysql:host=localhost;dbname=wd04-filmoteka-ofitserov','root', '');
 
-// // Описываем персону №1
 
-// $person1_name = 'Peter';
 
-// $person1_speciality = 'Programer';
+// Создаем запрос к БД
 
-// $person1_age = 25;
+// $sql = "SELECT * FROM films";
 
-// function persone1_hello($name, $spec, $age)
-// {
-// 	echo "Hello ! My name is $name. I am $spec and $age years old. ";
-// }
 
-// persone1_hello($person1_name, $person1_speciality, $person1_age);
+// Выполняем запрос спец.методом query
 
-// echo '<br><br>';
+// $resault = $db->query($sql);
 
-// // Описываем персону №2
+// echo "<h2> Вывод записей из результата по одной: </h2> ";
 
-// $person2_name = 'Jane';
 
-// $person2_speciality = 'Designer';
+// // Вывод методом fetch по одному рез. каждой строки
 
-// $person2_age = 27;
+// // $resault->fetch(PDO::FETCH_ASSOC);
 
-// function persone2_hello($name, $spec, $age)
-// {
-// 	echo "Hello ! My name is $name. I am $spec and $age years old. ";
-// }
+// // print_r($resault->fetch(PDO::FETCH_ASSOC));
 
-// persone1_hello($person2_name, $person2_name, $person2_age);
-// persone2_hello($person2_name, $person2_name, $person2_age);
 
 
+// // Выводим все фильмы и записываем в переменную $film
 
-// Задача описать персону ( ООП )
+// while ($film = $resault->fetch(PDO::FETCH_ASSOC)) {
+// 	// print_r($film);
 
+// 	echo "<br><br><br><br><br> ";
 
-// Создаем класс, даем ему название Person
 
-// class Person 
-// {
-// public $name = "John Doe";					
-// public $speciality = "Some spec";			// Свойства класса Person
-// public $age = "-";
+// 	echo "Название фильма: " . $film['title'] . "<br>";
+// 	echo "Жанр фильма: " . $film['genre'] . "<br>";
+// 	echo "Год фильма: " . $film['years'] . "<br>";
+// 	echo "Имя пути картинки  " . $film['photo'] . "<br>";
 
-// }
-
-// // Исходя из класса создаем объект с этими свойствами
-
-
-// $person1 = new Person;
-// $person1->name; 			
-
-// echo $person1->name;					// - Значение  = John Doe
-// echo "<br>";
-// echo $person1->speciality;			// - Значение  = Some spec
-// echo $person1->age;					// - Значение  = -
-
-
-
-
-
-// Задаем значение переменных объекта, внутри объекта класса Person
-// class Person 
-// {
-// public $name;					
-// public $speciality;			// Свойства класса Person
-// public $age;
-
-// }
-
-// // Исходя из класса создаем объект с этими свойствами
-
-
-// $person1 = new Person;
-// $person1->name = 'Peter';
-// $person1->speciality = 'Designer';
-// $person1->age = 27;
-
-// echo $person1->name;					// - Значение  = John Doe
-// echo "<br>";
-// echo $person1->speciality;	
-// echo "<br>";						// - Значение  = Some spec
-// echo $person1->age;					// - Значение  = -
-
-
-// Задаем внутри класса метод (функц.)
-
-
-// class Person 
-// {
-// public $name;					
-// public $speciality;			// Свойства класса Person
-// public $age;
-
-
-
-// // Метод класса Person
-
-// public function greeting()
-// {
-// 	//echo "Hello ! My name is $name. I am $speciality and $age years old. ";	
-
-// 	echo "Hello ! My name is ". $this->name .". I am  ".$this->speciality." and ".$this->age." years old. ";	
-
-
-// 	echo "<br><br><br><br>";
-// 	echo $this->name;	
-// 	echo $this->speciality;	
-// 	echo $this->age;	
-// }
-// }
-
-// // Исходя из класса создаем объект с этими свойствами
-
-
-// $person1 = new Person;
-// $person1->name = 'Peter';
-// $person1->speciality = 'Designer';
-// $person1->age = 27;
-
-
-
-// // Обращение к методу
-
-// // $person1->greeting($person1->name,$person1->speciality,$speciality->age);
-// $person1->greeting();
-
-
-
-// Конструктор запускается в момент создания нового объекта. Создаем конструктор
-
-
-
-class Person 
-{
-public $name;					
-public $speciality;			// Свойства класса Person
-public $age;
-
-
-// Cоздаем конструктор
-
-
-
-	//Конструктор запускается в момент создания нового объекта.
-
-// public function __construct(){
-	
-// 	echo "New person just created";
+// 	echo "<br><br><br><br><br> ";
 
 
 // }
 
+echo "<hr/>";
+
+// $sql = "SELECT * FROM films";
+// $resault = $db->query($sql);
+
+// // Второй способ (Подключение то же), получаем все данные сразу
+
+// $films = $resault->fetchAll(PDO::FETCH_ASSOC);
+
+// // print_r($resault->fetchAll(PDO::FETCH_ASSOC));
 
 
-public function __construct($name, $speciality, $age){
+// // Обходим массивом foreach  полученные данные которые в переменной $films 
 
-	$this->name = $name;
-	$this->speciality = $speciality;
-	$this->age = $age;
+// foreach ( $films as $film) {
+// 	echo "Название фильма: " . $film['title'] . "<br>";
+// 	echo "Жанр фильма: " . $film['genre'] . "<br>";
+// 	echo "Год фильма: " . $film['years'] . "<br>";
+// 	echo "Имя пути картинки  " . $film['photo'] . "<br>";
+// 	echo "<hr/>";
+// 	echo "<br/>";
 
+// }
 
- }
-
-
-
-// Метод класса Person
-
- public function greeting(){
-// 	//echo "Hello ! My name is $name. I am $speciality and $age years old. ";	
-
-	echo "Hello ! My name is ". $this->name .". I am  ".$this->speciality." and ".$this->age." years old. ";	
-
-
-// 	echo "<br><br><br><br>";
-// 	// echo $this->name;	
-// 	// echo $this->speciality;	
-// 	// echo $this->age;	
- }
-}
-
-// Исходя из класса создаем объект с этими свойствами
-
-
-$person1 = new Person('Peter', 'Programmer', 25);   // Передаем параметры конструктора 
-// echo $person1->name;
-// echo $person1->speciality;
-// echo $person1->age;
-
-$person1->greeting();
-
-// $person1->speciality = 'Designer';
-// $person1->age = 27;
+echo "<hr/>";
 
 
 
-// Обращение к методу
+// Третий способ
 
-// $person1->greeting($person1->name,$person1->speciality,$speciality->age);
-// $person1->greeting();
-echo "<br><br><br>";
 
-$person2 = new Person('Jane', 'Designer', 27);   // Передаем параметры конструктора 
-$person2->greeting();
+$sql = "SELECT * FROM films";
+$resault = $db->query($sql);
+
+// Обращаемся к объекту и с помощью метода bindColumn. Указываем какие переменные (обращение к БД) нужно создать
+
+$resault->bindColumn('id', $id);
+$resault->bindColumn('title', $title);
+$resault->bindColumn('genre', $genre);
+$resault->bindColumn('years', $years);
+$resault->bindColumn('photo', $photo);
+
+echo "<h2> Вывод записей с привязкой данных к переменным </h2>";
+	while ($resault->fetch(PDO::FETCH_ASSOC)) {
+		echo "ID: {$id}<br>";
+		echo "Название: {$title}<br>";
+		echo "Жанр: {$genre}<br>";
+		echo "Год: {$years}<br>";
+		echo "Имя картинки: {$photo}<br>";
+
+		echo "<br><br>";
+	}
 
 
 
