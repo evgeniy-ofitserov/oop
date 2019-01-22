@@ -4,35 +4,11 @@
 
 require "db.php";
 
+// Удаление данных
 
-// Обновляем данные в БД
+$courses = R::load('course', 1);
+R::trash($courses);
 
-// Получение одного курса
-
-$courses = R::load('course', 32);
-
-// print_r($courses);
-
-// echo "ID" . $courses->id . "<br>";
-// echo "Название" . $courses->title . "<br>";
-
-
-echo "</hr>";
-
-// Обновляем данные
-
-$courses->title = "Курс по пикапу";
-$courses->tuts = 30;
-$courses->price = 1025;
-$courses-> = 1025;
-
-
-// Сохраняем данные
-
-R::store($courses);
-
-
-// БД Обновлена
 
 
 
