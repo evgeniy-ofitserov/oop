@@ -1,24 +1,48 @@
 <?php 
-// Подключение через PDO
-// тип БД и подкл. 'mysql:host=localhost; dbname=wd04-filmoteka-ofitserov
-// Создаем объект
 
-// Удаление данных
+// Подключаемся к БД РБ
 
- $db = new PDO('mysql:host=localhost;dbname=mini-site','root', '');
+require "db.php";
+// Создание новых записей 
 
- // Готовим запрос на удаление
+$course = R::dispense('course');
 
-$sql = "DELETE FROM users  WHERE name = :name";
-$stmt = $db->prepare($sql);
+// Значение 
 
-
-$username = "New Flash";
-$stmt->bindValue(':name', $username);
-$stmt->execute();
+$course->title = "Курс по реакт";
 
 
-echo "Было затронуто строк: ". $stmt->rowCount()." ";
+// Сохраняем в БД
+
+R::store($course);
+
+
+// Создаем новый БИН. новую запись в нашу БД
+
+$course->tuts = 10;
+$course->price = 10000;
+
+$course->homeworks = 8;
+$course->homeworks = 8;
+$course->level = 'Для новичков';
+
+R::store($course);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
